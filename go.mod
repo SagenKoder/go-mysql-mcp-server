@@ -5,7 +5,7 @@ go 1.23
 toolchain go1.23.10
 
 require (
-	github.com/go-sql-driver/mysql v1.8.1
+	github.com/go-sql-driver/mysql v1.9.3
 	github.com/mark3labs/mcp-go v0.32.0
 )
 
