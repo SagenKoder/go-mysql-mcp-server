@@ -39,7 +39,7 @@ func NewMySQLServer() (*MySQLServer, error) {
 	database := os.Getenv("MYSQL_DATABASE")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, password, host, port, database)
-	
+
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open database connection: %w", err)
@@ -98,7 +98,7 @@ func CreateMCPServerWithTools(ms *MySQLServer) *server.MCPServer {
 
 	// Get table create statement tool
 	getTableCreateTool := mcp.NewTool("get_table_create",
-		mcp.WithDescription("Get the CREATE TABLE statement for a specific table"),
+		mcp.WithDescription("Get the CREATE TABLE statement for a specific table (Shows complete table definition including constraints, defaults and character sets)"),
 		mcp.WithString("schema",
 			mcp.Required(),
 			mcp.Description("The schema/database name"),
@@ -125,7 +125,7 @@ func CreateMCPServerWithTools(ms *MySQLServer) *server.MCPServer {
 
 	// Search in table tool
 	searchTableTool := mcp.NewTool("search_table",
-		mcp.WithDescription("Search for a value across all columns in a table"),
+		mcp.WithDescription("Search for a value across all columns in a table. Prefer the other specialized tools for structural queries if applicable."),
 		mcp.WithString("schema",
 			mcp.Required(),
 			mcp.Description("The schema/database name"),
